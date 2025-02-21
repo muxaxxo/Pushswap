@@ -6,7 +6,7 @@
 /*   By: aalegria <aalegria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 13:14:10 by aalegria          #+#    #+#             */
-/*   Updated: 2024/12/18 13:18:53 by aalegria         ###   ########.fr       */
+/*   Updated: 2025/02/21 14:51:00 by aalegria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,4 +63,21 @@ int	init_stacks(int argc, char **argv, t_stack *stack_a, t_stack *stack_b)
 		i++;
 	}
 	return (1);
+}
+
+void	separate_negatives(t_stack *a, t_stack *b)
+{
+	int	size;
+	int	i;
+
+	i = 0;
+	size = a->size;
+	while (i < size)
+	{
+		if (a->values[0] < 0)
+			pb(a, b);
+		else
+			ra(a);
+		i++;
+	}
 }
