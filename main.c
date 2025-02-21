@@ -6,7 +6,7 @@
 /*   By: aalegria <aalegria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 13:41:03 by aalegria          #+#    #+#             */
-/*   Updated: 2024/12/18 13:18:28 by aalegria         ###   ########.fr       */
+/*   Updated: 2025/02/21 17:17:23 by aalegria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,4 @@ int	main(int argc, char **argv)
 	push_swap(&stack_a, &stack_b);
 	print_stack(&stack_a, &stack_b);
 	cleanup_and_exit(&stack_a, &stack_b, 0);
-}
-
-void	cleanup_and_exit(t_stack *a, t_stack *b, int code)
-{
-	free_stack(a);
-	free_stack(b);
-	exit(code);
 }

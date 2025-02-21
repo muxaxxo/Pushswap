@@ -1,48 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   algorithm.c                                        :+:      :+:    :+:   */
+/*   sign_handle.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aalegria <aalegria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/22 15:55:01 by aalegria          #+#    #+#             */
-/*   Updated: 2025/02/21 17:17:14 by aalegria         ###   ########.fr       */
+/*   Created: 2025/02/21 17:10:15 by aalegria          #+#    #+#             */
+/*   Updated: 2025/02/21 17:15:19 by aalegria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	get_max_bits(t_stack *a)
+void	separate_negatives(t_stack *a, t_stack *b)
 {
-	int	max;
-	int	bits;
+	int	size;
 	int	i;
 
-	max = a->values[0];
-	i = 1;
-	while (i < a->size)
+	i = 0;
+	size = a->size;
+	while (i < size)
 	{
-		if (a->values[i] > max)
-			max = a->values[i];
+		if (a->values[0] < 0)
+			pb(a, b);
+		else
+			ra(a);
 		i++;
 	}
-	bits = 0;
-	while ((max >> bits) != 0)
-		bits++;
-	return (bits);
 }
 
-void	push_swap(t_stack *a, t_stack *b)
+void	sort_positive(t_stack *a, t_stack *b)
 {
 	int	bits;
 	int	i;
 
-	if (a->size <= 5)
-	{
-		sort_small_stack(a, b);
-		return ;
-	}
-	separate_negatives(a, b);
 	bits = get_max_bits(a);
 	i = 0;
 	while (i < bits)
@@ -50,6 +41,13 @@ void	push_swap(t_stack *a, t_stack *b)
 		sort_bit(a, b, i);
 		i++;
 	}
+}
+
+void	sort_negative(t_stack *a, t_stack *b)
+{
+	int	bits;
+	int	i;
+
 	bits = get_max_bits(b);
 	i = 0;
 	while (i < bits)
@@ -57,20 +55,4 @@ void	push_swap(t_stack *a, t_stack *b)
 		sort_bit(b, a, i);
 		i++;
 	}
-	while (b->size > 0)
-		pa(a, b);
-}
-
-int	is_sorted(t_stack *stack)
-{
-	int	i;
-
-	i = 0;
-	while (i < stack->size - 1)
-	{
-		if (stack->values[i] > stack->values[i + 1])
-			return (0);
-		i++;
-	}
-	return (1);
 }

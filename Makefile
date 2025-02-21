@@ -6,7 +6,7 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror
 
 SRC = main.c operations.c algorithm.c errors.c rever_rotate.c \
-		rotate.c utils.c pushandswap.c rare_sorts.c
+		rotate.c utils.c pushandswap.c rare_sorts.c sign_handle.c
 OBJ = $(SRC:.c=.o)
 
 all: $(NAME)

@@ -6,7 +6,7 @@
 /*   By: aalegria <aalegria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 15:53:58 by aalegria          #+#    #+#             */
-/*   Updated: 2024/12/18 13:27:59 by aalegria         ###   ########.fr       */
+/*   Updated: 2025/02/21 17:16:55 by aalegria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,4 +43,11 @@ void	handle_error(void)
 {
 	write(2, "Error\n", 6);
 	exit(EXIT_FAILURE);
+}
+
+void	cleanup_and_exit(t_stack *a, t_stack *b, int code)
+{
+	free_stack(a);
+	free_stack(b);
+	exit(code);
 }

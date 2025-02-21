@@ -6,7 +6,7 @@
 /*   By: aalegria <aalegria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 15:54:25 by aalegria          #+#    #+#             */
-/*   Updated: 2025/02/21 14:55:45 by aalegria         ###   ########.fr       */
+/*   Updated: 2025/02/21 17:11:56 by aalegria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,5 +51,7 @@ void	sort_five(t_stack *a, t_stack *b);
 int		get_min_value(t_stack *stack);
 int		get_second_min_value(t_stack *stack);
 void	separate_negatives(t_stack *a, t_stack *b);
+void	sort_positive(t_stack *a, t_stack *b);
+void	sort_negative(t_stack *a, t_stack *b);
 
 #endif

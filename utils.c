@@ -6,7 +6,7 @@
 /*   By: aalegria <aalegria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 12:41:59 by aalegria          #+#    #+#             */
-/*   Updated: 2025/02/21 14:54:45 by aalegria         ###   ########.fr       */
+/*   Updated: 2025/02/21 17:17:33 by aalegria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,23 +16,28 @@ void	sort_bit(t_stack *a, t_stack *b, int bit)
 {
 	int	size;
 	int	i;
+	int	mtb;
 
-	i = 0;
 	size = a->size;
+	i = 0;
+	mtb = 0;
 	while (i < size)
 	{
-		if ((a->values[0] < 0 && ((~a->values[0] >> bit) & 1) == 0) ||
-			(a->values[0] >= 0 && ((a->values[0] >> bit) & 1) == 0))
+		if (((a->values[0] >> bit) & 1) == 0)
+		{
 			pb(a, b);
+			mtb++;
+		}
 		else
 			ra(a);
 		i++;
 	}
-
-	while (b->size > 0)
-		pa(a, b);
+	if (mtb > 0)
+	{
+		while (b->size > 0)
+			pa(a, b);
+	}
 }
-
 
 void	free_stack(t_stack *stack)
 {
