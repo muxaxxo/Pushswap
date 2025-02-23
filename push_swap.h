@@ -6,7 +6,7 @@
 /*   By: aalegria <aalegria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 15:54:25 by aalegria          #+#    #+#             */
-/*   Updated: 2025/02/21 17:11:56 by aalegria         ###   ########.fr       */
+/*   Updated: 2025/02/23 11:47:15 by aalegria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ void	rb(t_stack *b);
 void	rra(t_stack *a);
 void	rrb(t_stack *b);
 
-void	push_swap(t_stack *a, t_stack *b);
 int		parse_args(int argc, char **argv, t_stack *a);
 void	handle_error(void);
 
@@ -50,8 +49,8 @@ void	sort_three(t_stack *a);
 void	sort_five(t_stack *a, t_stack *b);
 int		get_min_value(t_stack *stack);
 int		get_second_min_value(t_stack *stack);
-void	separate_negatives(t_stack *a, t_stack *b);
-void	sort_positive(t_stack *a, t_stack *b);
-void	sort_negative(t_stack *a, t_stack *b);
+int		get_max_bits(t_stack *a);
+void	push_swap(t_stack *a, t_stack *b);
+void	normalize_values(t_stack *a, int shift);
 
 #endif

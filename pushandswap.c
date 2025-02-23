@@ -6,7 +6,7 @@
 /*   By: aalegria <aalegria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 13:14:10 by aalegria          #+#    #+#             */
-/*   Updated: 2025/02/21 17:11:14 by aalegria         ###   ########.fr       */
+/*   Updated: 2025/02/23 11:43:18 by aalegria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,4 +63,27 @@ int	init_stacks(int argc, char **argv, t_stack *stack_a, t_stack *stack_b)
 		i++;
 	}
 	return (1);
+}
+
+void push_swap(t_stack *a, t_stack *b)
+{
+    if (a->size <= 5)
+    {
+        sort_small_stack(a, b);
+        return;
+    }
+
+    // Normalizar los valores para que todos sean positivos
+    int min_value = get_min_value(a);
+    if (min_value < 0)
+        normalize_values(a, -min_value);
+
+    // Aplicar Radix Sort
+    int bits = get_max_bits(a);
+    for (int i = 0; i < bits; i++)
+        sort_bit(a, b, i);
+
+    // Revertir la normalización para restaurar los valores originales
+    if (min_value < 0)
+        normalize_values(a, min_value);
 }
