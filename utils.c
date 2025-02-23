@@ -6,7 +6,7 @@
 /*   By: aalegria <aalegria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 12:41:59 by aalegria          #+#    #+#             */
-/*   Updated: 2025/02/21 17:17:33 by aalegria         ###   ########.fr       */
+/*   Updated: 2025/02/23 11:55:24 by aalegria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,25 +47,6 @@ void	free_stack(t_stack *stack)
 		stack->values = NULL;
 	}
 	stack->size = 0;
-}
-
-void	print_stack_recursive(int *values, int size)
-{
-	if (size > 0)
-	{
-		ft_printf("%d ", values[0]);
-		print_stack_recursive(values + 1, size - 1);
-	}
-}
-
-void	print_stack(t_stack *a, t_stack *b)
-{
-	ft_printf("Stack A: ");
-	print_stack_recursive(a->values, a->size);
-	ft_printf("\n");
-	ft_printf("Stack B: ");
-	print_stack_recursive(b->values, b->size);
-	ft_printf("\n");
 }
 
 void	sort_small_stack(t_stack *a, t_stack *b)
