@@ -6,7 +6,7 @@
 /*   By: aalegria <aalegria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 12:41:59 by aalegria          #+#    #+#             */
-/*   Updated: 2025/02/23 11:55:24 by aalegria         ###   ########.fr       */
+/*   Updated: 2025/02/24 15:52:32 by aalegria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,28 +15,29 @@
 void	sort_bit(t_stack *a, t_stack *b, int bit)
 {
 	int	size;
-	int	i;
-	int	mtb;
+	int	pushed;
+	int	rotated;
 
 	size = a->size;
-	i = 0;
-	mtb = 0;
-	while (i < size)
+	pushed = 0;
+	rotated = 0;
+	while (size--)
 	{
 		if (((a->values[0] >> bit) & 1) == 0)
 		{
 			pb(a, b);
-			mtb++;
+			pushed++;
 		}
 		else
+		{
 			ra(a);
-		i++;
+			rotated++;
+		}
 	}
-	if (mtb > 0)
-	{
-		while (b->size > 0)
-			pa(a, b);
-	}
+	while (rotated--)
+		rra(a);
+	while (pushed--)
+		pa(a, b);
 }
 
 void	free_stack(t_stack *stack)
@@ -60,4 +61,20 @@ void	sort_small_stack(t_stack *a, t_stack *b)
 		sort_three(a);
 	else if (a->size <= 5)
 		sort_five(a, b);
+}
+
+int	get_max_value(t_stack *stack)
+{
+	int	max;
+	int	i;
+
+	max = stack->values[0];
+	i = 1;
+	while (i < stack->size)
+	{
+		if (stack->values[i] > max)
+			max = stack->values[i];
+		i++;
+	}
+	return (max);
 }

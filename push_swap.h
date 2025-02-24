@@ -6,7 +6,7 @@
 /*   By: aalegria <aalegria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 15:54:25 by aalegria          #+#    #+#             */
-/*   Updated: 2025/02/23 11:47:15 by aalegria         ###   ########.fr       */
+/*   Updated: 2025/02/24 15:38:19 by aalegria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ void	handle_error(void);
 
 void	sort_bit(t_stack *a, t_stack *b, int bit);
 void	free_stack(t_stack *stack);
-void	print_stack(t_stack *a, t_stack *b);
 void	swap(t_stack *stack);
 void	push(t_stack *dst, t_stack *src);
 void	cleanup_and_exit(t_stack *a, t_stack *b, int code);
@@ -52,5 +51,8 @@ int		get_second_min_value(t_stack *stack);
 int		get_max_bits(t_stack *a);
 void	push_swap(t_stack *a, t_stack *b);
 void	normalize_values(t_stack *a, int shift);
+void	rrr(t_stack *a, t_stack *b);
+void	rr(t_stack *a, t_stack *b);
+int		get_max_value(t_stack *stack);
 
 #endif

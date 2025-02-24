@@ -6,7 +6,7 @@
 /*   By: aalegria <aalegria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 13:14:10 by aalegria          #+#    #+#             */
-/*   Updated: 2025/02/23 11:43:18 by aalegria         ###   ########.fr       */
+/*   Updated: 2025/02/24 15:39:35 by aalegria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,25 +65,29 @@ int	init_stacks(int argc, char **argv, t_stack *stack_a, t_stack *stack_b)
 	return (1);
 }
 
-void push_swap(t_stack *a, t_stack *b)
+void	push_swap(t_stack *a, t_stack *b)
 {
-    if (a->size <= 5)
-    {
-        sort_small_stack(a, b);
-        return;
-    }
+	int	bits;
+	int	i;
+	int	min_value;
 
-    // Normalizar los valores para que todos sean positivos
-    int min_value = get_min_value(a);
-    if (min_value < 0)
-        normalize_values(a, -min_value);
-
-    // Aplicar Radix Sort
-    int bits = get_max_bits(a);
-    for (int i = 0; i < bits; i++)
-        sort_bit(a, b, i);
-
-    // Revertir la normalización para restaurar los valores originales
-    if (min_value < 0)
-        normalize_values(a, min_value);
+	if (is_sorted(a))
+		return ;
+	if (a->size <= 5)
+	{
+		sort_small_stack(a, b);
+		return ;
+	}
+	min_value = get_min_value(a);
+	if (min_value < 0)
+		normalize_values(a, -min_value);
+	bits = get_max_bits(a);
+	i = 0;
+	while (i < bits)
+	{
+		sort_bit(a, b, i);
+		i++;
+	}
+	if (min_value < 0)
+		normalize_values(a, min_value);
 }
