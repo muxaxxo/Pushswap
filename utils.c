@@ -6,27 +6,30 @@
 /*   By: aalegria <aalegria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 12:41:59 by aalegria          #+#    #+#             */
-/*   Updated: 2025/02/24 15:52:32 by aalegria         ###   ########.fr       */
+/*   Updated: 2025/03/03 14:24:23 by aalegria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	sort_bit(t_stack *a, t_stack *b, int bit)
+void	rotate_and_push(t_stack *a, t_stack *b, int bit, int *pushed)
 {
 	int	size;
-	int	pushed;
 	int	rotated;
 
 	size = a->size;
-	pushed = 0;
 	rotated = 0;
 	while (size--)
 	{
 		if (((a->values[0] >> bit) & 1) == 0)
 		{
 			pb(a, b);
-			pushed++;
+			(*pushed)++;
+		}
+		else if (rotated > 0)
+		{
+			rra(a);
+			rotated--;
 		}
 		else
 		{
@@ -34,10 +37,31 @@ void	sort_bit(t_stack *a, t_stack *b, int bit)
 			rotated++;
 		}
 	}
-	while (rotated--)
+}
+
+void	sort_bit(t_stack *a, t_stack *b, int bit)
+{
+	int	pushed;
+	int	rotated;
+
+	pushed = 0;
+	rotate_and_push(a, b, bit, &pushed);
+	rotated = 0;
+	while (a->size > 0 && ((a->values[0] >> bit) & 1) == 1)
+	{
+		ra(a);
+		rotated++;
+	}
+	while (rotated > 0)
+	{
 		rra(a);
-	while (pushed--)
+		rotated--;
+	}
+	while (pushed > 0)
+	{
 		pa(a, b);
+		pushed--;
+	}
 }
 
 void	free_stack(t_stack *stack)
