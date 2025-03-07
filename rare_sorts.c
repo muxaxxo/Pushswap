@@ -6,7 +6,7 @@
 /*   By: aalegria <aalegria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 13:04:14 by aalegria          #+#    #+#             */
-/*   Updated: 2025/03/06 13:42:04 by aalegria         ###   ########.fr       */
+/*   Updated: 2025/03/07 17:29:48 by aalegria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ void	sort_three(t_stack *a)
 		sa(a);
 		rra(a);
 	}
-	else if (a->values[0] > a->values[1] && a->values[1] < a->values[2])
+	else if (a->values[0] > a->values[2] && a->values[1] < a->values[2])
 		ra(a);
-	else if (a->values[0] < a->values[1] && a->values[1] > a->values[2]
+	else if (a->values[0] < a->values[1] && a->values[1] > a->values[2] 
 		&& a->values[0] < a->values[2])
 	{
 		sa(a);
@@ -34,28 +34,29 @@ void	sort_three(t_stack *a)
 		rra(a);
 }
 
-void sort_five(t_stack *a, t_stack *b)
+void	sort_five(t_stack *a, t_stack *b)
 {
-    while (a->size > 3)
-    {
-        int min = get_min_value(a);
-        int index = find_index(a, min);
+	int	min_index;
 
-        if (index <= a->size / 2)
-            while (a->values[0] != min)
-                ra(a);
-        else
-            while (a->values[0] != min)
-                rra(a);
-        
-        pb(a, b);
-		optimize_rotations(a, b); 
-    }
-    sort_three(a);
-    pa(a, b);
-    pa(a, b);
+	while (a->size > 3)
+	{
+		min_index = get_min_index(a);
+		if (min_index <= a->size / 2)
+		{
+			while (min_index-- > 0)
+				ra(a);
+		}
+		else
+		{
+			while (min_index++ < a->size)
+				rra(a);
+		}
+		pb(a, b);
+	}
+	sort_three(a);
+	while (b->size > 0)
+		pa(a, b);
 }
-
 
 int	get_min_value(t_stack *stack)
 {

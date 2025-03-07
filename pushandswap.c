@@ -6,7 +6,7 @@
 /*   By: aalegria <aalegria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 13:14:10 by aalegria          #+#    #+#             */
-/*   Updated: 2025/03/07 15:22:39 by aalegria         ###   ########.fr       */
+/*   Updated: 2025/03/07 17:33:36 by aalegria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ void	push(t_stack *dst, t_stack *src)
 {
 	int	i;
 
+	if (src->size == 0)
+		return ;
 	i = dst->size;
 	while (i > 0)
 	{
@@ -67,41 +69,40 @@ int	init_stacks(int argc, char **argv, t_stack *stack_a, t_stack *stack_b)
 
 void	push_swap(t_stack *a, t_stack *b)
 {
-	int	bits;
 	int	i;
-	int	min_value;
 
 	if (is_sorted(a))
 		return ;
-	if (a->size <= 5)
+	if (a->size == 2)
+		sa(a);
+	else if (a->size == 3)
+		sort_three(a);
+	else if (a->size <= 5)
+		sort_five(a, b);
+	else
 	{
-		sort_small_stack(a, b);
-		return ;
+		i = 0;
+		while (!is_sorted(a))
+		{
+			sort_bit(a, b, i);
+			i++;
+		}
+		while (b->size > 0)
+			pa(a, b);
 	}
-	min_value = get_min_value(a);
-	if (min_value < 0)
-		normalize_values(a, -min_value);
-	bits = get_max_bits(a);
-	i = 0;
-	while (i < bits)
-	{
-		sort_bit(a, b, i);
-		i++;
-	}
-	optimize_rotations(a, b);
-	if (min_value < 0)
-		normalize_values(a, min_value);
 }
 
 
-int find_index(t_stack *stack, int value)
+int	find_index(t_stack *stack, int value)
 {
-    int i = 0;
-    while (i < stack->size)
-    {
-        if (stack->values[i] == value)
-            return (i);
-        i++;
-    }
-    return (-1);
+	int	i;
+
+	i = 0;
+	while (i < stack->size)
+	{
+		if (stack->values[i] == value)
+			return (i);
+		i++;
+	}
+	return (-1);
 }

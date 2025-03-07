@@ -6,7 +6,7 @@
 /*   By: aalegria <aalegria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 15:54:51 by aalegria          #+#    #+#             */
-/*   Updated: 2025/03/03 14:26:14 by aalegria         ###   ########.fr       */
+/*   Updated: 2025/03/07 17:32:18 by aalegria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	ra(t_stack *a)
 			i++;
 		}
 		a->values[a->size - 1] = tmp;
-		write(1, "rrr\n", 4);
+		write(1, "ra\n", 4);
 	}
 }
 
@@ -46,7 +46,7 @@ void	rb(t_stack *b)
 			i++;
 		}
 		b->values[b->size - 1] = tmp;
-		write(1, "rrr\n", 4);
+		write(1, "rb\n", 4);
 	}
 }
 
