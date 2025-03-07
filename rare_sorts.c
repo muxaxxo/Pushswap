@@ -6,7 +6,7 @@
 /*   By: aalegria <aalegria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 13:04:14 by aalegria          #+#    #+#             */
-/*   Updated: 2025/03/03 13:55:51 by aalegria         ###   ########.fr       */
+/*   Updated: 2025/03/06 13:42:04 by aalegria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,27 +34,28 @@ void	sort_three(t_stack *a)
 		rra(a);
 }
 
-void	sort_five(t_stack *a, t_stack *b)
+void sort_five(t_stack *a, t_stack *b)
 {
-	int	min;
+    while (a->size > 3)
+    {
+        int min = get_min_value(a);
+        int index = find_index(a, min);
 
-	while (a->size > 3)
-	{
-		min = get_min_value(a);
-		if (a->values[0] == min)
-			pb(a, b);
-		else if (a->values[1] == min)
-		{
-			sa(a);
-			pb(a, b);
-		}
-		else
-			ra(a);
-	}
-	sort_three(a);
-	pa(a, b);
-	pa(a, b);
+        if (index <= a->size / 2)
+            while (a->values[0] != min)
+                ra(a);
+        else
+            while (a->values[0] != min)
+                rra(a);
+        
+        pb(a, b);
+		optimize_rotations(a, b); 
+    }
+    sort_three(a);
+    pa(a, b);
+    pa(a, b);
 }
+
 
 int	get_min_value(t_stack *stack)
 {

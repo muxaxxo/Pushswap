@@ -6,7 +6,7 @@
 /*   By: aalegria <aalegria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 15:54:12 by aalegria          #+#    #+#             */
-/*   Updated: 2024/12/18 13:28:24 by aalegria         ###   ########.fr       */
+/*   Updated: 2025/03/06 12:53:39 by aalegria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,11 @@ void	pb(t_stack *a, t_stack *b)
 	if (a->size > 0)
 		push(b, a);
 	write(1, "pb\n", 3);
+}
+
+void	ss(t_stack *a, t_stack *b)
+{
+	sa(a);
+	sb(b);
+	write(1, "ss\n", 3);
 }

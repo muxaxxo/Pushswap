@@ -6,7 +6,7 @@
 /*   By: aalegria <aalegria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 15:54:25 by aalegria          #+#    #+#             */
-/*   Updated: 2025/02/24 15:38:19 by aalegria         ###   ########.fr       */
+/*   Updated: 2025/03/06 13:43:43 by aalegria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void	ra(t_stack *a);
 void	rb(t_stack *b);
 void	rra(t_stack *a);
 void	rrb(t_stack *b);
+void	ss(t_stack *a, t_stack *b);
 
 int		parse_args(int argc, char **argv, t_stack *a);
 void	handle_error(void);
@@ -54,5 +55,7 @@ void	normalize_values(t_stack *a, int shift);
 void	rrr(t_stack *a, t_stack *b);
 void	rr(t_stack *a, t_stack *b);
 int		get_max_value(t_stack *stack);
-
+void	optimize_rotations(t_stack *a, t_stack *b);
+int		find_index(t_stack *stack, int value);
+void	pre_push_large_numbers(t_stack *a, t_stack *b);
 #endif

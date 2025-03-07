@@ -6,7 +6,7 @@
 /*   By: aalegria <aalegria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 13:14:10 by aalegria          #+#    #+#             */
-/*   Updated: 2025/02/24 15:39:35 by aalegria         ###   ########.fr       */
+/*   Updated: 2025/03/07 15:22:39 by aalegria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,20 @@ void	push_swap(t_stack *a, t_stack *b)
 		sort_bit(a, b, i);
 		i++;
 	}
+	optimize_rotations(a, b);
 	if (min_value < 0)
 		normalize_values(a, min_value);
+}
+
+
+int find_index(t_stack *stack, int value)
+{
+    int i = 0;
+    while (i < stack->size)
+    {
+        if (stack->values[i] == value)
+            return (i);
+        i++;
+    }
+    return (-1);
 }

@@ -6,7 +6,7 @@
 /*   By: aalegria <aalegria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 12:41:59 by aalegria          #+#    #+#             */
-/*   Updated: 2025/03/03 14:24:23 by aalegria         ###   ########.fr       */
+/*   Updated: 2025/03/07 15:25:07 by aalegria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,9 @@ void	sort_bit(t_stack *a, t_stack *b, int bit)
 	int	rotated;
 
 	pushed = 0;
-	rotate_and_push(a, b, bit, &pushed);
 	rotated = 0;
+	rotate_and_push(a, b, bit, &pushed);
+	optimize_rotations(a, b);
 	while (a->size > 0 && ((a->values[0] >> bit) & 1) == 1)
 	{
 		ra(a);
@@ -63,6 +64,7 @@ void	sort_bit(t_stack *a, t_stack *b, int bit)
 		pushed--;
 	}
 }
+
 
 void	free_stack(t_stack *stack)
 {
