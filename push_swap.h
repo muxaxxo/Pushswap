@@ -6,7 +6,7 @@
 /*   By: aalegria <aalegria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 15:54:25 by aalegria          #+#    #+#             */
-/*   Updated: 2025/03/06 13:43:43 by aalegria         ###   ########.fr       */
+/*   Updated: 2025/03/07 17:48:37 by aalegria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,5 +57,6 @@ void	rr(t_stack *a, t_stack *b);
 int		get_max_value(t_stack *stack);
 void	optimize_rotations(t_stack *a, t_stack *b);
 int		find_index(t_stack *stack, int value);
-void	pre_push_large_numbers(t_stack *a, t_stack *b);
+//void	pre_push_large_numbers(t_stack *a, t_stack *b);
+int		get_min_index(t_stack *stack);
 #endif
