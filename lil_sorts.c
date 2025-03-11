@@ -1,76 +1,90 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   algorithm.c                                        :+:      :+:    :+:   */
+/*   lil_sorts.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aalegria <aalegria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 15:55:01 by aalegria          #+#    #+#             */
-/*   Updated: 2025/03/07 18:33:01 by aalegria         ###   ########.fr       */
+/*   Updated: 2025/03/11 15:38:50 by aalegria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	get_max_bits(t_stack *a)
+void	lil_sort_sb(t_list *d)
 {
-	int	max;
-	int	bits;
-
-	max = get_max_value(a);
-	bits = 0;
-	while (max)
+	while (d->sib > 0)
 	{
-		max >>= 1;
-		bits++;
+		if (d->sb[0] == d->lsp - 1)
+		{
+			pa(d);
+			d->control = 1;
+		}
+		if (d->sb[0] == d->lsp)
+		{
+			pa(d);
+			d->lsp--;
+			if (d->control == 1)
+			{
+				d->lsp--;
+				d->control = 0;
+				sa(d->sa);
+			}
+		}
+		else
+			rb(d);
 	}
-	return (bits);
 }
 
-int	is_sorted(t_stack *stack)
+void	lil_sort3(t_list *d, int i)
+{
+	while (i >= 0)
+	{
+		if (d->sa[0] == i)
+		{
+			pb(d);
+			i--;
+		}
+		else
+			ra(d);
+	}
+	lil_sort_sb(d);
+}
+
+void	lil_sort2(t_list *d)
 {
 	int	i;
+	int	j;
 
-	i = 0;
-	while (i < stack->size - 1)
+	j = 0;
+	i = d->lsp;
+	while (d->sib < 1)
 	{
-		if (stack->values[i] > stack->values[i + 1])
-			return (0);
-		i++;
+		if (d->sa[0] == i)
+			pb(d);
+		else
+			ra(d);
 	}
-	return (1);
 }
 
-// void	pre_push_large_numbers(t_stack *a, t_stack *b)
-// {
-// 	int	i;
-// 	int	size;
-
-// 	i = 0;
-// 	size = a->size;
-// 	while (i < size)
-// 	{
-// 		if (a->values[0] > 400 || a->values[0] < -400)
-// 			pb(a, b);
-// 		else
-// 			ra(a);
-// 		i++;
-// 	}
-// }
-
-void	optimize_rotations(t_stack *a, t_stack *b)
+void	lil_sort(t_list *d)
 {
-	if (a->size > 1 && b->size > 1 && a->values[0] > a->values[1]
-		&& b->values[0] > b->values[1])
+	int	i;
+	int	j;
+
+	j = 0;
+	i = d->lsp;
+	while (d->sib <= (d->argc / 2))
 	{
-		ss(a, b);
+		if (d->sa[0] == i)
+		{
+			pb(d);
+			i--;
+		}
+		else
+			ra(d);
 	}
-	else if (a->size > 1 && a->values[0] > a->values[1])
-	{
-		sa(a);
-	}
-	else if (b->size > 1 && b->values[0] > b->values[1])
-	{
-		sb(b);
-	}
+	lil_sort_sb(d);
+	lil_sort3(d, i);
 }
